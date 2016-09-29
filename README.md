@@ -21,4 +21,4 @@ Using the following link as a reference, you could create the wordpress database
 * [Ansible MysqlD Module](http://docs.ansible.com/ansible/list_of_database_modules.html#mysql)
 
 # Example files
-<pre>git checkout task1</pre>
+<pre>git checkout task2</pre>
