@@ -1,7 +1,17 @@
-First Task - `git checkout task1`
-	1. Create an inventory file with your VM.
-	2. Place the VM in an inventory group named ‘lamp’
-	3. Using this inventory file use ad-hoc commands
-		1. Use the built in modules to view VM IP address
-		2. Check memory
-		3. Use ‘setup’ to examine all of the attributes that can be used
+Execute the commands on everything in the inventory file
+<pre>ansible -i inventory -a "free -m" all</pre>
+
+Using the group name defined in the inventory
+<pre>ansible -i inventory -a "free -m" lamp</pre>
+
+View VM specifics
+<pre>ansible -i inventory -m setup all </pre>
+
+Test communications with VM(s)
+<pre>ansible -i inventory -m ping all</pre>
+
+View VM specifics using the group name
+<pre>ansible -i inventory -m setup lamp</pre>
+
+Test communications with VM(s) in the lamp group
+<pre>ansible -i inventory -m ping lamp</pre>
