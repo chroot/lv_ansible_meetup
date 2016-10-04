@@ -8,12 +8,10 @@
   - name: Install - Wordpress is only in EPEL so we need that first
     yum:
       name: epel-release
-      state: latest
 
   - name: Install - Install the required packages
-    yum: 
+    yum:
       name: "{{item}}"
-      state: latest
     with_items:
       - firewalld
       - httpd
@@ -22,8 +20,8 @@
       - wordpress
 
   - name: Services - Enable and start services
-    service: 
-      name: "{{item}}" 
+    service:
+      name: "{{item}}"
       enabled: yes
       state: started
     with_items:
@@ -32,9 +30,9 @@
       - mariadb
 
   - name: Security - Enable the firewalld
-    firewalld: 
+    firewalld:
       service: "{{item}}"
-      permanent: true 
+      permanent: true
       state: enabled
     with_items:
       - http
@@ -44,12 +42,11 @@
   - name: Security - Because we don't have a firewall-cmd command
     shell: firewall-cmd --reload
 
-
   - name: Apache - Let's make the link to wordpress
-    file: 
+    file:
       src: /usr/share/wordpress
-      dest: /var/www/html/wordpress 
-      owner: apache 
+      dest: /var/www/html/wordpress
+      owner: apache
       group: apache
       state: link
       seuser: system_u
