@@ -1,0 +1,3 @@
+---
+# defaults file for mariadb
+MyDefaultMariaDBPort: 3306

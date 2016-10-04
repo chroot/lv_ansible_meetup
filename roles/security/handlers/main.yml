@@ -1,0 +1,4 @@
+---
+# handlers file for security
+- name: restart firewalld
+  shell: firewall-cmd --reload

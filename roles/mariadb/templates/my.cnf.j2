@@ -1,0 +1,13 @@
+[mysql]
+
+# CLIENT #
+port                           = {{ MyDefaultMariaDBPort }}
+socket                         = /var/lib/mysql/mysql.sock
+
+[mysqld]
+
+# GENERAL #
+user                           = mysql
+default-storage-engine         = InnoDB
+socket                         = /var/lib/mysql/mysql.sock
+pid-file                       = /var/lib/mysql/mysql.pid

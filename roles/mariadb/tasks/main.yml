@@ -1,0 +1,21 @@
+---
+# tasks file for mariadb
+- name: MariaDB | Install the required packages
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - mariadb-server
+
+- name: MariaDB | Deploy the my.cnf template
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+    owner: root
+    group: root
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: mysqld_etc_t
+    selevel: s0
+  notify: restart mariadb

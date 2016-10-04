@@ -1,0 +1,50 @@
+---
+# tasks file for apache
+- name: Apache | Install the required packages
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - httpd
+    - mod_ssl
+    - wordpress
+
+- name: Apache | Enable and start services
+  service:
+    name: httpd
+    enabled: yes
+
+- name: Apache | Enable the http/https
+  firewalld:
+    service: "{{item}}"
+    permanent: true
+    state: enabled
+  with_items:
+    - http
+    - https
+  notify: restart firewalld
+
+- name: Apache | Copy the master httpd.conf file
+  copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: root
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: bin_t
+    selevel: s0
+
+- name: Apache | Deploy the Wordpress.conf template
+  template:
+    src: wordpress.conf.j2
+    dest: /etc/httpd/conf.d/wordpress.conf
+    owner: root
+    group: root
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: bin_t
+    selevel: s0
+  notify: restart apache

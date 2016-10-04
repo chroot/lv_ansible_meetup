@@ -1,0 +1,22 @@
+---
+# tasks file for security
+- name: Security | Install the required packages
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - epel-release
+
+- name: Security | Ensure SELinux is Enforcing
+  selinux:
+    policy: targed
+    state: Enforcing
+
+- name: Security | Enable the security ports
+  firewalld:
+    service: "{{item}}"
+    permanent: true
+    state: enabled
+  with_items:
+    - ssh
+  notify: restart firewalld
