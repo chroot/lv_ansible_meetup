@@ -3,7 +3,6 @@
 - name: Apache | Install the required packages
   yum:
     name: "{{item}}"
-    state: latest
   with_items:
     - httpd
     - mod_ssl

@@ -3,14 +3,19 @@
 - name: Security | Install the required packages
   yum:
     name: "{{item}}"
-    state: latest
   with_items:
+    - cockpit
     - epel-release
+    - firewalld
 
-- name: Security | Ensure SELinux is Enforcing
-  selinux:
-    policy: targed
-    state: Enforcing
+- name: Security | Enable and start services
+  service:
+    name: "{{item}}"
+    enabled: yes
+    state: started
+  with_items:
+    - cockpit.socket
+    - firewalld
 
 - name: Security | Enable the security ports
   firewalld:

@@ -3,7 +3,6 @@
 - name: MariaDB | Install the required packages
   yum:
     name: "{{item}}"
-    state: latest
   with_items:
     - mariadb-server
 

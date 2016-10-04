@@ -1,2 +1,2 @@
 [lamp]
-node1.example.com ansible_host=192.168.86.246 ansible_user=matt.wells ansible_port=22
+node1.example.com ansible_host=192.168.122.58 ansible_user=matt.wells ansible_port=22
